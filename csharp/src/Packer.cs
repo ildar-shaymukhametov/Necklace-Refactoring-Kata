@@ -7,17 +7,7 @@ namespace NecklaceRefactoringKata
     {
         public static void PackNecklace(Necklace item, JewelleryStorage storage)
         {
-            if (item.Stone == Jewel.Diamond)
-                storage.Safe.Add(item);
-            else if (!item.IsHeavy())
-                storage.Box.TopShelf.Add(item);
-            else if (item is PendantNecklace pendantNecklace)
-            {
-                storage.Tree.Add(pendantNecklace.Chain);
-                storage.Box.TopShelf.Add(pendantNecklace.Pendant);
-            }
-            else
-                storage.Tree.Add(item);
+            Handler.CreatePackNecklaceHandler().Handle(item, storage);
         }
 
         public static void Pack(JewelleryBase item, JewelleryStorage storage)
